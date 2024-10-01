@@ -108,6 +108,7 @@
             context: .
             pull: true
             push: true
+            images: ${{ steps.set-tags.outputs.tags }}
             tags: ${{ steps.meta.outputs.tags }}
             labels: ${{ steps.meta.outputs.labels }}
             file: Dockerfile
