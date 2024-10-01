@@ -2,6 +2,8 @@ FROM matomo:latest AS base
 
 COPY start-sshd ./
 
+USER root
+
 # Start and enable SSH
 RUN apt-get update \
     && apt-get install -y --no-install-recommends dialog \
