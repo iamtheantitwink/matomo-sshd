@@ -105,3 +105,16 @@
             cache-from: type=gha
             cache-to: type=gha,mode=max
   
+        - name: Azure WebApp
+          uses: Azure/webapps-deploy@v3.0.1
+          with:
+            # Name of the Azure Web App
+            app-name: mymatomo
+            # Applies to Web Apps(Windows and Linux) and Web App Containers(linux). Multi container scenario not supported. Publish profile (*.publishsettings) file contents with Web Deploy secrets
+            publish-profile: ${{ secrets.PUBLISH_SETTINGS }} # optional
+            # Enter an existing Slot other than the Production slot
+            # Applies to Web App only: Path to package or folder. *.zip, *.war, *.jar or a folder to deploy
+            images: iamtheantitwink.azurecr.io/masotom-sshd:${{ github.sha }}  # optional
+            # Applies to Web App Containers only: Path of the Docker-Compose file. Should be a fully qualified path or relative to the default working directory. Required for multi-container scenario
+            # Restart the app service after deployment
+            restart: true # optional
