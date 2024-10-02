@@ -114,7 +114,7 @@
             publish-profile: ${{ secrets.PUBLISH_SETTINGS }} # optional
             # Enter an existing Slot other than the Production slot
             # Applies to Web App only: Path to package or folder. *.zip, *.war, *.jar or a folder to deploy
-            images: iamtheantitwink.azurecr.io/masotom-sshd:${{ github.sha }}  # optional
+            images: iamtheantitwink.azurecr.io/matomo-sshd:${{ github.sha }}  # optional
             # Applies to Web App Containers only: Path of the Docker-Compose file. Should be a fully qualified path or relative to the default working directory. Required for multi-container scenario
             # Restart the app service after deployment
             restart: true # optional
