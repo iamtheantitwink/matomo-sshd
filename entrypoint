@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-/usr/sbin/sshd -D
+/usr/sbin/sshd &
+nginx &
 
 # usage: file_env VAR [DEFAULT]
 #    ie: file_env 'XYZ_DB_PASSWORD' 'example'
