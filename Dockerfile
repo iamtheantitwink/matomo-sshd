@@ -7,18 +7,14 @@ ENV DEBIAN_FRONTEND=noninteractive
 USER root
 
 # Start and enable SSH
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends dialog
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends openssh-server nano
-RUN DEBIAN_FRONTEND=noninteractive echo "N" | apt-get install -y --no-install-recommends nginx-common
-RUN dpkg --configure -a 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends nginx 
-RUN apt-get clean 
-RUN apt-get autoremove -y 
-RUN echo "root:Docker!" | chpasswd 
-RUN mkdir -p /.ssh
-RUN mkdir -p /root
+RUN apt-get update && \
+	apt-get upgrade -y && \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends dialog openssh-server nano nginx-common nginx && \
+	dpkg --configure -a && \
+	apt-get clean && \
+	apt-get autoremove -y && \
+	echo "root:Docker!" | chpasswd && \
+	mkdir -p /.ssh /root
 
 COPY --chown=root:root ./.ssh /.ssh
 RUN chmod +x /.ssh/*
@@ -28,7 +24,7 @@ RUN "echo '/.ssh/sshd-entrypoint' > /root/.bashrc"
 
 RUN chmod +x /entrypoint 
 RUN mkdir -p /run/sshd
-
+RUN echo '/.ssh/sshd-entrypoint' > /root/.bashrc
 COPY sshd_config /etc/ssh/
 
 EXPOSE 80 2222
