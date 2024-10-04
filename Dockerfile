@@ -1,5 +1,7 @@
 FROM matomo:fpm AS base
 
+SHELL ["/bin/bash", "-o", "pipefail", "-o", "errexit", "-c"]
+
 ENV DEBIAN_FRONTEND=noninteractive
 
 USER root
