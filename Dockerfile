@@ -16,6 +16,7 @@ RUN apt-get clean
 RUN apt-get autoremove -y 
 RUN echo "root:Docker!" | chpasswd 
 RUN mkdir -p /.ssh
+RUN mkdir -p /root
 
 COPY --chown=root:root ./.ssh /.ssh
 RUN chmod +x /.ssh/*
