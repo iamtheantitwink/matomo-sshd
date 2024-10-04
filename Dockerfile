@@ -21,7 +21,7 @@ COPY --chown=root:root ./.ssh /.ssh
 RUN chmod +x /.ssh/*
 COPY ./entrypoint /entrypoint
 COPY ./matomo.conf /etc/nginx/sites-available/default
-RUN "echo \"/.ssh/sshd-entrypoint\"" > /root/.bashrc"
+RUN "echo '/.ssh/sshd-entrypoint' > /root/.bashrc"
 
 RUN chmod +x /entrypoint 
 RUN mkdir -p /run/sshd
